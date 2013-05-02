@@ -2,8 +2,8 @@ lazy_stream
 ===========
 
 A Ruby class to represent lazy infinite stream.
-It is implemented in the same way as the streams in the book [SICP](
-http://mitpress.mit.edu/sicp/full-text/sicp/book/node69.html)
+It is implemented in the same way as the streams in the book [SICP]
+(http://mitpress.mit.edu/sicp/full-text/sicp/book/node69.html).
 
 ## Usage
 
@@ -20,23 +20,23 @@ like Array.
 
 It becomes powerful when we construct infinite streams like these:
 
-  def integers_starting_from(n)
-    lazy_stream(n) { integers_starting_from(n + 1) }
-  end
-
-  def fibgen(a, b)
-    lazy_stream(a) { fibgen(b, a + b) }
-  end
-
-  def sieve(stream)
-    lazy_stream(stream.first) do
-      sieve(stream.rest.select { |x| x % stream.first > 0 })
+    def integers_starting_from(n)
+      lazy_stream(n) { integers_starting_from(n + 1) }
     end
-  end
 
-  def primes
-    sieve(integers_starting_from(2))
-  end
+    def fibgen(a, b)
+      lazy_stream(a) { fibgen(b, a + b) }
+    end
+
+    def sieve(stream)
+      lazy_stream(stream.first) do
+        sieve(stream.rest.select { |x| x % stream.first > 0 })
+      end
+    end
+
+    def primes
+      sieve(integers_starting_from(2))
+    end
 
 ## Installation
 The library is distributed via [RubyGems](http://rubygems.org/):
