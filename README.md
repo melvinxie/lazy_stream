@@ -24,9 +24,13 @@ It becomes powerful when we construct infinite streams like these:
       lazy_stream(n) { integers_starting_from(n + 1) }
     end
 
+    integers_starting_from(1).take(10).reduce(&:+)  #=> 55
+
     def fibgen(a, b)
       lazy_stream(a) { fibgen(b, a + b) }
     end
+
+    fibgen(0, 1).take(10).to_a  #=> [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
 
     def sieve(stream)
       lazy_stream(stream.first) do
@@ -37,6 +41,11 @@ It becomes powerful when we construct infinite streams like these:
     def primes
       sieve(integers_starting_from(2))
     end
+
+    primes.take(10).to_a  #=> [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
+
+For more examples, see my [ruby playground]
+(https://github.com/melvinxie/ruby/blob/master/number.rb).
 
 ## Installation
 The library is distributed via [RubyGems](http://rubygems.org/):
