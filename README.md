@@ -15,6 +15,7 @@ To create a stream:
     s.first  #=> 1
     s.rest   #=> A LazyStream object for the rest of the list
 
+lazy_stream is just a shortcut for LazyStream.new.
 Methods empty?, at, drop, each, map, reduce, select, take are also implemented
 like Array.
 
