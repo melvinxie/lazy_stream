@@ -6,7 +6,7 @@ It is implemented in the same way as the streams in the book [SICP]
 (http://mitpress.mit.edu/sicp/full-text/sicp/book/node69.html).
 
 ## Installation
-The library is distributed via [RubyGems](http://rubygems.org/):
+The library is distributed via [RubyGems](http://rubygems.org/gems/lazy_stream):
 
     $ gem install lazy_stream
 
