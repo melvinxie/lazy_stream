@@ -16,15 +16,17 @@ class LazyStream
     first.nil?
   end
 
-  def at(n)
+  def [](n)
     if empty?
       nil
     elsif n == 0
       first
     else
-      rest.at(n - 1)
+      rest[n - 1]
     end
   end
+
+  alias_method :at, :[]
 
   def drop(n)
     empty? || n < 1 ? self : rest.drop(n - 1)

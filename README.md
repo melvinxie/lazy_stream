@@ -88,11 +88,9 @@ def pi_stream
 end
 
 def euler_transform(s)
-  s0 = s.first
-  s1 = s.at(1)
-  s2 = s.at(2)
-  first = s2 - ((s2 - s1)**2 / (s0 - 2 * s1 + s2))
-  lazy_stream(first) { euler_transform(s.rest) }
+  lazy_stream(s[2] - ((s[2] - s[1])**2 / (s[0] - 2 * s[1] + s[2]))) do
+    euler_transform(s.rest)
+  end
 end
 
 def make_tableau(s, &transform)
