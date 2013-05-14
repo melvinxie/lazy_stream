@@ -1,12 +1,12 @@
 #!/usr/bin/env ruby
 
 class LazyStream
+  attr_reader :first
+
   def initialize(first=nil, &proc)
     @first = first
     @proc = block_given? ? proc : lambda { LazyStream.new }
   end
-
-  attr_reader :first
 
   def rest
     @rest ||= @proc.call
@@ -17,13 +17,8 @@ class LazyStream
   end
 
   def [](n)
-    if empty?
-      nil
-    elsif n == 0
-      first
-    else
-      rest[n - 1]
-    end
+    return nil if empty?
+    n == 0 ? first : rest[n - 1]
   end
 
   alias_method :at, :[]
@@ -105,6 +100,12 @@ class LazyStream
 
   def self.interleave(s1, s2)
     s1.empty? ? s2 : LazyStream.new(s1.first) { interleave(s2, s1.rest) }
+  end
+
+  def ==(other)
+    return false if !other.is_a?(LazyStream)
+    return true if empty? && other.empty?
+    first == other.first && rest == other.rest
   end
 end
 
