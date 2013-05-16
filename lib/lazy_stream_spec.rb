@@ -81,6 +81,58 @@ describe LazyStream do
     end
   end
 
+  context "#map" do
+    it "maps the elements one at a time" do
+      stream = LazyStream.new(1) { LazyStream.new(2) }
+      mapped = stream.map do |item|
+        item * 2
+      end
+      mapped.should == LazyStream.new(2) { LazyStream.new(4) }
+    end
+  end
+
+  context "#select" do
+    it "returns self if stream is empty" do
+      stream = LazyStream.new
+      selected = stream.select { |element| element % 2 == 0 }
+      selected.should == stream
+    end
+
+    it "selects first when it only applies to it" do
+      stream = LazyStream.new(2) { LazyStream.new(1) }
+      selected = stream.select { |element| element % 2 == 0 }
+      selected == LazyStream.new(2)
+    end
+
+    it "selects as longs as predicate applies" do
+      stream = LazyStream.new(2) { LazyStream.new(4) }
+      selected = stream.select { |element| element % 2 == 0 }
+      selected.should == stream
+    end
+  end
+
+  context "#take" do
+    it "returns an empty steam if stream is empty" do
+      stream = LazyStream.new
+      stream.take(10).should be_empty
+    end
+
+    it "returns empty stream if n is less than one" do
+      stream = LazyStream.new(1)
+      stream.take(0).should == LazyStream.new
+    end
+
+    it "returns the first element for n equals 1" do
+      stream = LazyStream.new(2)
+      stream.take(1).should == stream
+    end
+
+    it "returns first & rest from rest when n is greater than 1" do
+      stream = LazyStream.new(1) { LazyStream.new(2) }
+      stream.take(2).should == stream
+    end
+  end
+
   context "#==" do
     it "is not equal with something other than LazyStream" do
       LazyStream.new.should_not == 2
