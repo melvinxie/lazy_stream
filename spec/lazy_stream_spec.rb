@@ -1,4 +1,4 @@
-require_relative "./lazy_stream"
+require_relative 'spec_helper'
 
 describe LazyStream do
   it "initializes an empty stream" do
@@ -137,7 +137,7 @@ describe LazyStream do
     it "is not equal with something other than LazyStream" do
       LazyStream.new.should_not == 2
     end
-    
+
     it "is equal when both empty" do
       LazyStream.new.should == LazyStream.new
     end

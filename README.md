@@ -119,4 +119,4 @@ in Ruby, otherwise you will hit the stack level too deep error soon.
 
 For more examples, see my
 [blog post](http://melvinxie.github.io/blog/2013/05/04/ruby-lazy-infinite-stream-in-the-sicp-way/)
-and [ruby playground](https://github.com/melvinxie/ruby/blob/master/streams.rb).
+and [example spec](https://github.com/melvinxie/lazy_stream/blob/master/spec/example_spec.rb).
