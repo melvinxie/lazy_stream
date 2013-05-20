@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.description = 'Ruby infinite lazy stream'
   s.authors     = ['Mingmin Xie']
   s.email       = 'melvinxie@gmail.com'
-  s.files       = ['lib/lazy_stream.rb']
+  s.files       = ['lib/lazy_stream.rb', 'Rakefile', 'README.md']
   s.homepage    = 'https://github.com/melvinxie/lazy_stream'
   s.license     = 'MIT'
   s.test_files  = Dir.glob("{spec}/**/*.rb")
