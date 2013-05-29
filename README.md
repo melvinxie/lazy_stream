@@ -1,6 +1,9 @@
 lazy_stream
 ===========
 
+[![Build Status](https://travis-ci.org/melvinxie/lazy_stream.png)]
+(https://travis-ci.org/melvinxie/lazy_stream)
+
 A Ruby class to represent lazy infinite stream.
 It is implemented in the same way as the streams in the book [SICP]
 (http://mitpress.mit.edu/sicp/full-text/sicp/book/node69.html).
